@@ -1,8 +1,9 @@
 name: BuildAndDeploy
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch
+  # push:
+  #   branches:
+  #     - main
 
 jobs:
   build-and-deploy:
@@ -19,7 +20,7 @@ jobs:
           node-version: 16
       - run: npm install -g yarn
       - run: node --version
-      - run: npm --version 
+      - run: npm --version
 
       - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
         run: |
@@ -31,9 +32,9 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           external_repository: shenweiyan/Markdown2Html
-          personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}     
+          personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           publish_dir: ./build
           publish_branch: gh-pages
           force_orphan: true
           full_commit_message: ${{ github.event.head_commit.message }}
-          cname: 'md.weiyan.cc'
+          cname: "md.weiyan.cc"
